@@ -1,3 +1,74 @@
+// ===== Global Telegram Login Widget callback =====
+var SHOSTKA_LAT = 51.865;
+var SHOSTKA_LNG = 33.468;
+var MAX_DISTANCE_KM = 50;
+var _telegramUser = null;
+var _userLocation = null;
+
+function onTelegramAuth(user) {
+    _telegramUser = user;
+    document.getElementById('authSection').style.display = 'none';
+    document.getElementById('formFields').style.display = 'block';
+
+    var userInfo = document.getElementById('userInfo');
+    userInfo.innerHTML = '<img src="' + user.photo_url + '" alt="avatar">' +
+        '<span>@' + user.username + '</span>' +
+        '<span style="color: var(--color-text-secondary); font-weight: 400;">(' + user.first_name + ')</span>';
+
+    checkLocation();
+}
+
+function checkLocation() {
+    var locationDiv = document.createElement('div');
+    locationDiv.id = 'locationStatus';
+    locationDiv.className = 'booking__form-location booking__form-location--pending';
+    locationDiv.textContent = '📍 Перевіряємо ваше місцезнаходження...';
+    var formFields = document.getElementById('formFields');
+    formFields.insertBefore(locationDiv, formFields.firstChild.nextSibling);
+
+    if (!navigator.geolocation) {
+        setLocationStatus('fail', '⚠️ Геолокація недоступна. Дозвольте геолокацію для підтвердження.');
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var distance = getDistance(lat, lng, SHOSTKA_LAT, SHOSTKA_LNG);
+            _userLocation = { lat: lat, lng: lng, distance: Math.round(distance) };
+
+            if (distance <= MAX_DISTANCE_KM) {
+                setLocationStatus('ok', '✅ Ви поруч із Шосткою (' + Math.round(distance) + ' км)');
+            } else {
+                setLocationStatus('fail', '⚠️ Ви знаходитесь за ' + Math.round(distance) + ' км від Шостки. Бронювання доступне тільки для місцевих.');
+            }
+        },
+        function(error) {
+            setLocationStatus('fail', '⚠️ Дозвольте геолокацію для підтвердження місцезнаходження');
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
+    );
+}
+
+function setLocationStatus(type, text) {
+    var div = document.getElementById('locationStatus');
+    if (!div) return;
+    div.className = 'booking__form-location booking__form-location--' + type;
+    div.textContent = text;
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+    var R = 6371;
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('header');
     const burger = document.getElementById('burger');
@@ -45,80 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== BOOKING FORM =====
     var TG_BOT_TOKEN = '8640506002:AAGsTPFzI7WsVva381uQmflsB_TAXjJRnfg';
     var TG_CHAT_ID = '-1003831593831';
-
-    // Шостка coordinates: 51.865, 33.468
-    var SHOSTKA_LAT = 51.865;
-    var SHOSTKA_LNG = 33.468;
-    var MAX_DISTANCE_KM = 50;
-
-    var telegramUser = null;
-    var userLocation = null;
-
-    // ===== Telegram Login Widget callback =====
-    window.onTelegramAuth = function(user) {
-        telegramUser = user;
-        document.getElementById('authSection').style.display = 'none';
-        document.getElementById('formFields').style.display = 'block';
-
-        var userInfo = document.getElementById('userInfo');
-        userInfo.innerHTML = '<img src="' + user.photo_url + '" alt="avatar">' +
-            '<span>@' + user.username + '</span>' +
-            '<span style="color: var(--color-text-secondary); font-weight: 400;">(' + user.first_name + ')</span>';
-
-        checkLocation();
-    };
-
-    // ===== Geolocation check =====
-    function checkLocation() {
-        var locationDiv = document.createElement('div');
-        locationDiv.id = 'locationStatus';
-        locationDiv.className = 'booking__form-location booking__form-location--pending';
-        locationDiv.textContent = '📍 Перевіряємо ваше місцезнаходження...';
-        var formFields = document.getElementById('formFields');
-        formFields.insertBefore(locationDiv, formFields.firstChild.nextSibling);
-
-        if (!navigator.geolocation) {
-            setLocationStatus('fail', '⚠️ Геолокація недоступна. Дозвольте геолокацію для підтвердження.');
-            return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                var lat = position.coords.latitude;
-                var lng = position.coords.longitude;
-                var distance = getDistance(lat, lng, SHOSTKA_LAT, SHOSTKA_LNG);
-                userLocation = { lat: lat, lng: lng, distance: Math.round(distance) };
-
-                if (distance <= MAX_DISTANCE_KM) {
-                    setLocationStatus('ok', '✅ Ви поруч із Шосткою (' + Math.round(distance) + ' км)');
-                } else {
-                    setLocationStatus('fail', '⚠️ Ви знаходитесь за ' + Math.round(distance) + ' км від Шостки. Бронювання доступне тільки для місцевих.');
-                }
-            },
-            function(error) {
-                setLocationStatus('fail', '⚠️ Дозвольте геолокацію для підтвердження місцезнаходження');
-            },
-            { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
-        );
-    }
-
-    function setLocationStatus(type, text) {
-        var div = document.getElementById('locationStatus');
-        if (!div) return;
-        div.className = 'booking__form-location booking__form-location--' + type;
-        div.textContent = text;
-    }
-
-    function getDistance(lat1, lon1, lat2, lon2) {
-        var R = 6371;
-        var dLat = (lat2 - lat1) * Math.PI / 180;
-        var dLon = (lon2 - lon1) * Math.PI / 180;
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
-    }
 
     // ===== Phone mask =====
     var phoneInput = document.getElementById('phone');
@@ -286,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        if (!telegramUser) {
+        if (!_telegramUser) {
             var authError = document.getElementById('authError');
             authError.textContent = 'Увійдіть через Telegram';
             return;
@@ -310,10 +307,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var zoneLabels = { standard: 'Стандарт', vip: 'VIP', vvip: 'VVIP' };
         var guestLabels = { '1-2': '1-2 особи', '3-5': '3-5 осіб', '6-10': '6-10 осіб', '10+': '10+ осіб' };
 
-        var locationText = userLocation ? userLocation.distance + ' км від Шостки' : 'невідоме';
+        var locationText = _userLocation ? _userLocation.distance + ' км від Шостки' : 'невідоме';
 
         var message = '🎾 *Нова заявка на бронювання*\n\n' +
-            '🆔 *Telegram:* @' + telegramUser.username + ' (ID: ' + telegramUser.id + ')\n' +
+            '🆔 *Telegram:* @' + _telegramUser.username + ' (ID: ' + _telegramUser.id + ')\n' +
             '👤 *Ім\'я:* ' + data.name.trim() + '\n' +
             '📞 *Телефон:* ' + data.phone + '\n' +
             '📅 *Дата:* ' + data.date + '\n' +
