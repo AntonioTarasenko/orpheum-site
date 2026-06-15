@@ -2,109 +2,377 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>ORPHEUM — Бронювання</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORPHEUM — Нічний клуб у Шостці</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="app">
-    <div class="app__header">
-        <div class="app__logo">
-            <img src="images/logo_blender_orpheum.png" alt="ORPHEUM">
+<header class="header" id="header">
+    <div class="header__inner">
+        <div class="header__left">
+            <a href="#" class="header__logo">
+                <svg width="120" height="52" viewBox="0 0 184.2 79.64" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                    <path d="M152.28.84c.36-.58,13.15-.43,13.62.06.96,1.01,1.43,18.28,2.34,18.18s.98-16.72,2.13-18.03c.6-.69,13.37-.86,13.77.2l.05,77.47c-.27,1.1-9.6,1.09-9.6.6V23.88l-3,24.24c-.38.61-5.55.69-6.24.48-1.32-.41-2.61-23.28-3.72-26.16l-.12,26.16h-8.88s-.36-.33-.36-.36V.84Z"/>
+                    <path d="M21.62,47.3c-5.11,7.84-18.18,5.59-20.71-3.69C-.36,38.92-.33,11.95,1.2,7.57c3.78-10.81,19.95-9.62,22.38,1.62,1.36,6.3,1.34,33.05-1.96,38.12ZM13.03,9.29c-1.14-1.42-1.99.73-2.12,1.74-.7,5.46-.7,24.55,0,30.02.48,3.76,2.13,2.01,2.42-.96s.67-29.6-.29-30.8Z"/>
+                    <path d="M75.24.72c.3-.8,7.89-.82,9.01-.61.56.1.99-.05,1.25.67.81,3.41-.84,26.97-.07,28.15.17.27,2.88-.89,3.61-.96,3.01-.3,9.24.14,9.24,4.44v46.56s-.33.36-.36.36h-9.84c-.12,0-.39-.39-.36-.6l.23-45.83c-.21-1.21-2-1.56-2.39-.25-.36,1.2.67,15.48-.6,15.48h-9.36s-.36-.33-.36-.36V.72Z"/>
+                    <path d="M101.52,50.04h69.84l-.3,29.22c-20.04-.26-40.18.53-60.18.32-1.71-.02-8.2.04-9.36-.26-.86-.23-.36-.33-.36-.6v-28.32c0-.07.28-.24.36-.36ZM139.8,63.24c.15-.24,0-4.83,0-5.64,0-.03-.33-.36-.36-.36h-6c-1.62,0,1.85,2.73.37,4.21-2.32,2.32-2.17-7.48-.96-7.93,1.63-.62.92,2.52,1.55,2.52h5.04c.71,0,.25-1.93.02-2.42-1.42-2.97-12.32-3.17-13.04.68-.34,1.82-.5,7.14,1.15,8.33,2.89,2.07,5.23.48,7.8.35.58-.03,3.87,1.15,4.43.26ZM107.52,51.72c-.81-.2-3.28,0-4.32,0-.03,0-.36.33-.36.36v10.8c0,.89,5.04.89,5.04,0v-3.96c1.29.45,2.1,4,3.12,4.44.54.23,4.29.25,4.7-.09.52-.42.68-11.54-.26-11.54h-4.2c-.6,0,.26,4.48-.36,4.55-.66.08-2.39-4.31-3.36-4.55ZM124.2,62.88c.3-.79,0-8.93,0-10.56,0-.82-5.2-.89-5.74-.23-.32.39-.43,9.19-.27,10.08.42,2.34,5.78,1.31,6.01.71ZM149.64,55.8c-2.8,1.44-1.06-4.08-2.04-4.08h-5.04s-.36.33-.36.36v11.04s.33.36.36.36h5.04s.36-.33.36-.36v-4.32c0-.55,1.36-.27,1.68-.12v4.2c0,.9,6,.9,6,0v-10.56c0-.94-6-.76-6-.24v3.72ZM166.2,54.12c2.91,1.47,4.67-2.4,3-2.4h-11.76c-.51,0-.95,1.63-.26,2.19.6.48,3.02.06,3.02.21v8.76c0,.9,6,.9,6,0v-8.76ZM112.62,75.67c-3.11,3.11-2.56-7.35-1.98-7.86,2.44-2.21,2.22,2.86,2.68,3.09.56.28,6.19.38,6.45-.8,1.38-6.34-14.59-5.34-15.98-2.42-.5,1.06-.38,7.4.25,8.41,1.6,2.56,14.46,2.68,15.49-.59.16-.5.28-2.24-.12-2.55-.24-.19-5.83-.21-6.1-.07-.82.41-.05,2.14-.69,2.79ZM129.24,75.24c-.24-.39,0-8,0-9.24,0-.03-.33-.36-.36-.36h-6.24s-.36.33-.36.36v11.64c2.03-.38,9.3.58,10.65-.03.56-.26.56-1.86.25-2.16-.65-.63-3.58.38-3.94-.21ZM150.6,75.6c.41-1.66,0-7.44,0-9.6,0-.03-.33-.36-.36-.36h-6c-1.12,0,.89,13.11-2.16,10.08-.74-.74.69-10.08-.72-10.08h-6s-.36.33-.36.36v9.6c0,2.73,14.75,3.47,15.6,0ZM153.24,66.24c-.31.84,0,9.33,0,11.04,0,.03.33.36.36.36h13.2c.8,0,2.3-.86,2.5-1.82.94-4.47-2.3-3.99-2.38-4.55-.05-.33,3.61-1.21,1.43-4.06-1.32-1.72-12.08-2.04-14.04-1.58-.39.09-.91.18-1.07.61Z"/>
+                    <path d="M45,39.48c1.37.24,3.28,1.28,3.58,2.78l.2,36.2c-.25.54-.73.72-1.27.85-.38.09-7.51.07-7.9.01-.59-.09-1.09-.69-1.1-1.3l.15-35.66c-.23-.93-2.1-1.76-2.51-.79-.3.7.79,9.42-.12,10.19-.39.33-9.91.26-10.23-.14-1.01-1.27.36-20.03-.43-22.99.28-.61.63-.78,1.26-.9,2.82-.55,16.86.02,19.26,1.4,3.91,2.25,4.1,9.39-.89,10.37ZM36.52,32.31c-.44.2-.55,4.61.2,4.78,3.12.69,2.46-6-.2-4.78Z"/>
+                    <path d="M60.36,46.68l-.05,32.24c-.25.4-8.79.52-9.33.3-.65-.26-.94-.76-.95-1.45l.24-49.15c.28-.49,8.95-.65,9.72-.41,1.05.32.16.98.96,1.2.19.05,2.52-1.25,3.67-1.38,2.31-.25,6.97.06,8.07,2.6.66,1.51.59,12.98.03,14.62-1.48,4.34-9.33,3.81-12.36,1.44ZM62.45,44.22c.44-.43.43-11.79-.03-12.2-.78-.7-1.83.13-2.05,1.12-.18.82-.2,9.23-.03,10.07.22,1.06,1.4,1.69,2.11,1Z"/>
+                    <path d="M136.56,28.92c.28.11.52.74.56,1.07.43,3.46-1.05,11.06-.19,14.16.44,1.6,2.21,1.16,2.39-.96.33-3.9-.67-9.72-.25-13.2.04-.34.31-1.07.61-1.07h9.6s.36.33.36.36v18.72c0,1.14-9.59,1.13-10.18.86-.3-.14,0-1.03-.5-1.22-.16-.06-2.29,1.18-3.22,1.33-2.64.43-7.79.07-8.78-3.01-.43-1.33-.68-14.61-.36-15.98.07-.29.28-1.07.61-1.07,1.48,0,8.63-.27,9.36,0Z"/>
+                    <path d="M111.72,39.48v4.92c0,.8,2.64.8,2.64,0v-3.84c0-.62,8.84-.37,9.84-.36v3.72c0,5.99-21.07,7.83-22.69-.11-.32-1.57-.33-8.06-.09-9.71,1.08-7.25,19.26-7.26,22.11-1.27.45.95,1.17,5.9.55,6.41-.7.58-10.61.18-12.37.24ZM113.58,32.82c-1.62-1.73-2.65,2.41-1.62,2.94,2.58,1.32,2.39-2.11,1.62-2.94Z"/>
+                    <path d="M160.47,72.4c1.69-1.14,2.86,2.51,1.18,3.22-2.25.94-1.44-3.04-1.18-3.22Z"/>
+                    <path d="M160.59,67.84c1.66-.79,2.45,1.83,1.29,2.49-1.7.97-2.26-2.03-1.29-2.49Z"/>
+                </svg>
+            </a>
+            <nav class="header__nav">
+                <a href="#about" class="header__link">Про нас</a>
+                <a href="#events" class="header__link">Вечірки</a>
+                <a href="#gallery" class="header__link">Галерея</a>
+                <a href="#contacts" class="header__link">Контакти</a>
+            </nav>
+            <a href="tel:0509001292" class="header__phone">050 900 12 92</a>
         </div>
-        <p class="app__tagline">Нічний клуб у Шостці</p>
-    </div>
-
-    <div class="app__section">
-        <h2 class="app__title">Найближчі події</h2>
-        <div class="events__list">
-            <div class="event-item">
-                <div class="event-item__date">
-                    <span class="event-item__day">21</span>
-                    <span class="event-item__month">Черв</span>
-                </div>
-                <div class="event-item__info">
-                    <h3>Friday Night Bass</h3>
-                    <p>22:00 — 06:00 · DJ PROKOPCHUK</p>
-                </div>
-                <span class="event-item__price event-item__price--free">вхід вільний</span>
-            </div>
-            <div class="event-item">
-                <div class="event-item__date">
-                    <span class="event-item__day">28</span>
-                    <span class="event-item__month">Черв</span>
-                </div>
-                <div class="event-item__info">
-                    <h3>Summer Vibes Open Air</h3>
-                    <p>20:00 — 08:00 · GUEST DJ</p>
-                </div>
-                <span class="event-item__price">від 200 ₴</span>
-            </div>
-            <div class="event-item">
-                <div class="event-item__date">
-                    <span class="event-item__day">05</span>
-                    <span class="event-item__month">Лип</span>
-                </div>
-                <div class="event-item__info">
-                    <h3>Hip-Hop Night</h3>
-                    <p>23:00 — 06:00 · RESIDENT DJs</p>
-                </div>
-                <span class="event-item__price event-item__price--free">вхід вільний</span>
-            </div>
+        <div class="header__right">
+            <a href="#booking" class="header__btn">Бронювання</a>
+            <button class="header__burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
+</header>
 
-    <div class="app__section">
-        <h2 class="app__title">Забронювати стіл</h2>
-        <form class="booking-form" id="bookingForm">
-            <div class="form-group">
-                <label for="name">Ваше ім'я *</label>
-                <input type="text" id="name" name="name" placeholder="Олександр" minlength="2" maxlength="50" required>
-                <span class="form-error" id="nameError"></span>
-            </div>
-            <div class="form-group">
-                <label for="phone">Телефон *</label>
-                <input type="tel" id="phone" name="phone" placeholder="+38 (0__) ___-__-__" required>
-                <span class="form-error" id="phoneError"></span>
-            </div>
-            <div class="form-group">
-                <label for="date">Дата *</label>
-                <input type="text" id="date" name="date" placeholder="ДД.ММ.РРРР" maxlength="10" required>
-                <span class="form-error" id="dateError"></span>
-            </div>
-            <div class="form-group">
-                <label for="guests">Кількість гостей</label>
-                <select id="guests" name="guests">
-                    <option value="1-2">1-2 особи</option>
-                    <option value="3-5">3-5 осіб</option>
-                    <option value="6-10" selected>6-10 осіб</option>
-                    <option value="10+">10+ осіб</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="zone">Зона</label>
-                <select id="zone" name="zone">
-                    <option value="standard">Стандарт</option>
-                    <option value="vip">VIP-зона</option>
-                    <option value="vvip">VVIP-зона</option>
-                </select>
-            </div>
-            <button type="submit" class="form-btn" id="submitBtn">Надіслати заявку</button>
-        </form>
-    </div>
-
-    <div class="app__section app__contacts">
-        <p>📍 вул. Свободи 18, Шостка</p>
-        <p>📞 <a href="tel:0509001292">050 900 12 92</a></p>
-        <p>🕐 Пт-Сб: 22:00 — 08:00</p>
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__inner">
+        <a href="#about" class="mobile-menu__link">Про нас</a>
+        <a href="#events" class="mobile-menu__link">Вечірки</a>
+        <a href="#gallery" class="mobile-menu__link">Галерея</a>
+        <a href="#contacts" class="mobile-menu__link">Контакти</a>
+        <a href="tel:0509001292" class="mobile-menu__link">050 900 12 92</a>
+        <a href="#booking" class="mobile-menu__btn">Бронювання</a>
     </div>
 </div>
 
-<script src="script.js?v=7"></script>
+<section class="hero">
+    <div class="hero__bg">
+        <div class="hero__gradient"></div>
+    </div>
+    <div class="hero__content">
+        <p class="hero__subtitle">Нічний клуб</p>
+        <img src="images/logo_blender_orpheum.png" alt="ORPHEUM Logo" class="hero__logo">
+        <p class="hero__desc">Місце, де ніч оживає</p>
+        <div class="hero__actions">
+            <a href="#booking" class="hero__btn hero__btn--primary">Забронювати стіл</a>
+            <a href="#events" class="hero__btn hero__btn--secondary">Наступна вечірка</a>
+        </div>
+    </div>
+    <div class="hero__scroll">
+        <span>Гортай вниз</span>
+        <div class="hero__scroll-line"></div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <div class="section-label">Про нас</div>
+        <div class="about__grid">
+            <div class="about__text">
+                <h2 class="about__title">Ми створюємо<br><span>незабутні</span> вечори</h2>
+                <p class="about__desc">
+                    ORPHEUM — це більше, ніж просто нічний клуб. Це простір, де музика, світло та атмосфера зливаються в одне ціле. Кожна вечірка тут — це шоу, кожен гість — частина історії.
+                </p>
+                <p class="about__desc">
+                    Наші DJ та звукорежисери створюють унікальну звукову атмосферу, а інтер'єр у стилі модерн забезпечує комфорт та стиль для кожного відвідувача.
+                </p>
+                <div class="about__stats">
+                    <div class="about__stat">
+                        <span class="about__stat-num">500+</span>
+                        <span class="about__stat-label">Місць</span>
+                    </div>
+                    <div class="about__stat">
+                        <span class="about__stat-num">50+</span>
+                        <span class="about__stat-label">Вечірок на рік</span>
+                    </div>
+                    <div class="about__stat">
+                        <span class="about__stat-num">10+</span>
+                        <span class="about__stat-label">DJ-резидентів</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about__visual">
+                <div class="about__card about__card--1">
+                    <div class="about__card-icon">🎵</div>
+                    <h3>Топовий звук</h3>
+                    <p>Profesionalna zvuкова система</p>
+                </div>
+                <div class="about__card about__card--2">
+                    <div class="about__card-icon">💡</div>
+                    <h3>LED-шоу</h3>
+                    <p>Сучасне світлове оформлення</p>
+                </div>
+                <div class="about__card about__card--3">
+                    <div class="about__card-icon">🍸</div>
+                    <h3>Барна карта</h3>
+                    <p>Коктейлі від найкращих барменів</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="events" id="events">
+    <div class="container">
+        <div class="section-label">Вечірки</div>
+        <h2 class="events__title">Найближчі події</h2>
+        <div class="events__grid">
+            <div class="event-card">
+                <div class="event-card__date">
+                    <span class="event-card__day">21</span>
+                    <span class="event-card__month">Черв</span>
+                </div>
+                <div class="event-card__info">
+                    <h3 class="event-card__name">Friday Night Bass</h3>
+                    <p class="event-card__time">22:00 — 06:00</p>
+                    <p class="event-card__dj">DJ PROKOPCHUK</p>
+                </div>
+                <div class="event-card__price">вхід вільний</div>
+            </div>
+            <div class="event-card">
+                <div class="event-card__date">
+                    <span class="event-card__day">28</span>
+                    <span class="event-card__month">Черв</span>
+                </div>
+                <div class="event-card__info">
+                    <h3 class="event-card__name">Summer Vibes Open Air</h3>
+                    <p class="event-card__time">20:00 — 08:00</p>
+                    <p class="event-card__dj">GUEST DJ FROM KYIV</p>
+                </div>
+                <div class="event-card__price">від 200 ₴</div>
+            </div>
+            <div class="event-card">
+                <div class="event-card__date">
+                    <span class="event-card__day">05</span>
+                    <span class="event-card__month">Лип</span>
+                </div>
+                <div class="event-card__info">
+                    <h3 class="event-card__name">Hip-Hop Night</h3>
+                    <p class="event-card__time">23:00 — 06:00</p>
+                    <p class="event-card__dj">RESIDENT DJs</p>
+                </div>
+                <div class="event-card__price">вхід вільний</div>
+            </div>
+            <div class="event-card">
+                <div class="event-card__date">
+                    <span class="event-card__day">12</span>
+                    <span class="event-card__month">Лип</span>
+                </div>
+                <div class="event-card__info">
+                    <h3 class="event-card__name">Techno Warehouse</h3>
+                    <p class="event-card__time">00:00 — 10:00</p>
+                    <p class="event-card__dj">SPECIAL GUEST</p>
+                </div>
+                <div class="event-card__price">від 300 ₴</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <div class="container">
+        <div class="section-label">Галерея</div>
+        <h2 class="gallery__title">Атмосфера ORPHEUM</h2>
+        <div class="gallery__grid">
+            <div class="gallery__item gallery__item--1">
+                <img src="images/1.jpg" alt="ORPHEUM" class="gallery__img">
+            </div>
+            <div class="gallery__item gallery__item--2">
+                <img src="images/2.jpg" alt="ORPHEUM" class="gallery__img">
+            </div>
+            <div class="gallery__item gallery__item--3">
+                <img src="images/3.jpg" alt="ORPHEUM" class="gallery__img">
+            </div>
+            <div class="gallery__item gallery__item--4">
+                <img src="images/4.jpg" alt="ORPHEUM" class="gallery__img">
+            </div>
+            <div class="gallery__item gallery__item--5">
+                <img src="images/5.jpg" alt="ORPHEUM" class="gallery__img">
+            </div>
+            <div class="gallery__item gallery__item--6">
+                <img src="images/1.jpg" alt="ORPHEUM" class="gallery__img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="booking" id="booking">
+    <div class="container">
+        <div class="section-label">Бронювання</div>
+        <div class="booking__grid">
+            <div class="booking__info">
+                <h2 class="booking__title">Забронюйте<br>свій вечір</h2>
+                <p class="booking__desc">
+                    Залиште заявку і ми зв'яжемося з вами для підтвердження бронювання. VIP-зони та столи доступні для попереднього замовлення.
+                </p>
+                <div class="booking__features">
+                    <div class="booking__feature">
+                        <span class="booking__feature-icon">✓</span>
+                        <span>VIP-зони</span>
+                    </div>
+                    <div class="booking__feature">
+                        <span class="booking__feature-icon">✓</span>
+                        <span>Бронювання столів</span>
+                    </div>
+                    <div class="booking__feature">
+                        <span class="booking__feature-icon">✓</span>
+                        <span>Комплексне обслуговування</span>
+                    </div>
+                </div>
+            </div>
+            <form class="booking__form" id="bookingForm" novalidate>
+                <div class="booking__form-fields">
+                    <div class="booking__form-user" id="userInfo" style="display:none;"></div>
+                    <div class="booking__form-group">
+                        <label for="name">Ваше ім'я *</label>
+                        <input type="text" id="name" name="name" placeholder="Олександр" minlength="2" maxlength="50" required>
+                        <span class="booking__form-error" id="nameError"></span>
+                    </div>
+                    <div class="booking__form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+38 (0__) ___-__-__" required>
+                        <span class="booking__form-error" id="phoneError"></span>
+                    </div>
+                    <div class="booking__form-group">
+                        <label for="date">Дата *</label>
+                        <input type="text" id="date" name="date" placeholder="ДД.ММ.РРРР" maxlength="10" required>
+                        <span class="booking__form-error" id="dateError"></span>
+                    </div>
+                    <div class="booking__form-group">
+                        <label for="guests">Кількість гостей</label>
+                        <select id="guests" name="guests">
+                            <option value="1-2">1-2 особи</option>
+                            <option value="3-5">3-5 осіб</option>
+                            <option value="6-10" selected>6-10 осіб</option>
+                            <option value="10+">10+ осіб</option>
+                        </select>
+                    </div>
+                    <div class="booking__form-group">
+                        <label for="zone">Зона</label>
+                        <select id="zone" name="zone">
+                            <option value="standard">Стандарт</option>
+                            <option value="vip">VIP-зона</option>
+                            <option value="vvip">VVIP-зона</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="booking__form-btn" id="submitBtn">Надіслати заявку</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="contacts" id="contacts">
+    <div class="container">
+        <div class="section-label">Контакти</div>
+        <div class="contacts__grid">
+            <div class="contacts__info">
+                <h2 class="contacts__title">Де нас знайти</h2>
+                <div class="contacts__item">
+                    <span class="contacts__icon">📍</span>
+                    <div>
+                        <p class="contacts__label">Адреса</p>
+                        <p class="contacts__value">вул. Свободи 18, Шостка</p>
+                    </div>
+                </div>
+                <div class="contacts__item">
+                    <span class="contacts__icon">📞</span>
+                    <div>
+                        <p class="contacts__label">Телефон</p>
+                        <a href="tel:0509001292" class="contacts__value contacts__value--link">050 900 12 92</a>
+                    </div>
+                </div>
+                <div class="contacts__item">
+                    <span class="contacts__icon">🕐</span>
+                    <div>
+                        <p class="contacts__label">Графік роботи</p>
+                        <p class="contacts__value">Пт-Сб: 22:00 — 08:00</p>
+                    </div>
+                </div>
+                <div class="contacts__item">
+                    <span class="contacts__icon">💬</span>
+                    <div>
+                        <p class="contacts__label">Соцмережі</p>
+                        <a href="https://www.facebook.com/groups/1255150391204358" target="_blank" class="contacts__value contacts__value--link">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts__map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.5!2d33.425!3d51.865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDUxJzU0LjAiTiAzM8KwMjUnMzAuMCJF!5e0!3m2!1suk!2sua!4v1"
+                    width="100%" 
+                    height="400" 
+                    style="border:0; border-radius: 16px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <a href="https://maps.app.goo.gl/Sge4Ve1xLBaqFKvZA" target="_blank" class="contacts__map-btn">Відкрити в Google Maps</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__top">
+            <div class="footer__brand">
+                <a href="#" class="footer__logo">
+                    <svg width="120" height="52" viewBox="0 0 184.2 79.64" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                        <path d="M152.28.84c.36-.58,13.15-.43,13.62.06.96,1.01,1.43,18.28,2.34,18.18s.98-16.72,2.13-18.03c.6-.69,13.37-.86,13.77.2l.05,77.47c-.27,1.1-9.6,1.09-9.6.6V23.88l-3,24.24c-.38.61-5.55.69-6.24.48-1.32-.41-2.61-23.28-3.72-26.16l-.12,26.16h-8.88s-.36-.33-.36-.36V.84Z"/>
+                        <path d="M21.62,47.3c-5.11,7.84-18.18,5.59-20.71-3.69C-.36,38.92-.33,11.95,1.2,7.57c3.78-10.81,19.95-9.62,22.38,1.62,1.36,6.3,1.34,33.05-1.96,38.12ZM13.03,9.29c-1.14-1.42-1.99.73-2.12,1.74-.7,5.46-.7,24.55,0,30.02.48,3.76,2.13,2.01,2.42-.96s.67-29.6-.29-30.8Z"/>
+                        <path d="M75.24.72c.3-.8,7.89-.82,9.01-.61.56.1.99-.05,1.25.67.81,3.41-.84,26.97-.07,28.15.17.27,2.88-.89,3.61-.96,3.01-.3,9.24.14,9.24,4.44v46.56s-.33.36-.36.36h-9.84c-.12,0-.39-.39-.36-.6l.23-45.83c-.21-1.21-2-1.56-2.39-.25-.36,1.2.67,15.48-.6,15.48h-9.36s-.36-.33-.36-.36V.72Z"/>
+                        <path d="M101.52,50.04h69.84l-.3,29.22c-20.04-.26-40.18.53-60.18.32-1.71-.02-8.2.04-9.36-.26-.86-.23-.36-.33-.36-.6v-28.32c0-.07.28-.24.36-.36ZM139.8,63.24c.15-.24,0-4.83,0-5.64,0-.03-.33-.36-.36-.36h-6c-1.62,0,1.85,2.73.37,4.21-2.32,2.32-2.17-7.48-.96-7.93,1.63-.62.92,2.52,1.55,2.52h5.04c.71,0,.25-1.93.02-2.42-1.42-2.97-12.32-3.17-13.04.68-.34,1.82-.5,7.14,1.15,8.33,2.89,2.07,5.23.48,7.8.35.58-.03,3.87,1.15,4.43.26ZM107.52,51.72c-.81-.2-3.28,0-4.32,0-.03,0-.36.33-.36.36v10.8c0,.89,5.04.89,5.04,0v-3.96c1.29.45,2.1,4,3.12,4.44.54.23,4.29.25,4.7-.09.52-.42.68-11.54-.26-11.54h-4.2c-.6,0,.26,4.48-.36,4.55-.66.08-2.39-4.31-3.36-4.55ZM124.2,62.88c.3-.79,0-8.93,0-10.56,0-.82-5.2-.89-5.74-.23-.32.39-.43,9.19-.27,10.08.42,2.34,5.78,1.31,6.01.71ZM149.64,55.8c-2.8,1.44-1.06-4.08-2.04-4.08h-5.04s-.36.33-.36.36v11.04s.33.36.36.36h5.04s.36-.33.36-.36v-4.32c0-.55,1.36-.27,1.68-.12v4.2c0,.9,6,.9,6,0v-10.56c0-.94-6-.76-6-.24v3.72ZM166.2,54.12c2.91,1.47,4.67-2.4,3-2.4h-11.76c-.51,0-.95,1.63-.26,2.19.6.48,3.02.06,3.02.21v8.76c0,.9,6,.9,6,0v-8.76ZM112.62,75.67c-3.11,3.11-2.56-7.35-1.98-7.86,2.44-2.21,2.22,2.86,2.68,3.09.56.28,6.19.38,6.45-.8,1.38-6.34-14.59-5.34-15.98-2.42-.5,1.06-.38,7.4.25,8.41,1.6,2.56,14.46,2.68,15.49-.59.16-.5.28-2.24-.12-2.55-.24-.19-5.83-.21-6.1-.07-.82.41-.05,2.14-.69,2.79ZM129.24,75.24c-.24-.39,0-8,0-9.24,0-.03-.33-.36-.36-.36h-6.24s-.36.33-.36.36v11.64c2.03-.38,9.3.58,10.65-.03.56-.26.56-1.86.25-2.16-.65-.63-3.58.38-3.94-.21ZM150.6,75.6c.41-1.66,0-7.44,0-9.6,0-.03-.33-.36-.36-.36h-6c-1.12,0,.89,13.11-2.16,10.08-.74-.74.69-10.08-.72-10.08h-6s-.36.33-.36.36v9.6c0,2.73,14.75,3.47,15.6,0ZM153.24,66.24c-.31.84,0,9.33,0,11.04,0,.03.33.36.36.36h13.2c.8,0,2.3-.86,2.5-1.82.94-4.47-2.3-3.99-2.38-4.55-.05-.33,3.61-1.21,1.43-4.06-1.32-1.72-12.08-2.04-14.04-1.58-.39.09-.91.18-1.07.61Z"/>
+                        <path d="M45,39.48c1.37.24,3.28,1.28,3.58,2.78l.2,36.2c-.25.54-.73.72-1.27.85-.38.09-7.51.07-7.9.01-.59-.09-1.09-.69-1.1-1.3l.15-35.66c-.23-.93-2.1-1.76-2.51-.79-.3.7.79,9.42-.12,10.19-.39.33-9.91.26-10.23-.14-1.01-1.27.36-20.03-.43-22.99.28-.61.63-.78,1.26-.9,2.82-.55,16.86.02,19.26,1.4,3.91,2.25,4.1,9.39-.89,10.37ZM36.52,32.31c-.44.2-.55,4.61.2,4.78,3.12.69,2.46-6-.2-4.78Z"/>
+                        <path d="M60.36,46.68l-.05,32.24c-.25.4-8.79.52-9.33.3-.65-.26-.94-.76-.95-1.45l.24-49.15c.28-.49,8.95-.65,9.72-.41,1.05.32.16.98.96,1.2.19.05,2.52-1.25,3.67-1.38,2.31-.25,6.97.06,8.07,2.6.66,1.51.59,12.98.03,14.62-1.48,4.34-9.33,3.81-12.36,1.44ZM62.45,44.22c.44-.43.43-11.79-.03-12.2-.78-.7-1.83.13-2.05,1.12-.18.82-.2,9.23-.03,10.07.22,1.06,1.4,1.69,2.11,1Z"/>
+                        <path d="M136.56,28.92c.28.11.52.74.56,1.07.43,3.46-1.05,11.06-.19,14.16.44,1.6,2.21,1.16,2.39-.96.33-3.9-.67-9.72-.25-13.2.04-.34.31-1.07.61-1.07h9.6s.36.33.36.36v18.72c0,1.14-9.59,1.13-10.18.86-.3-.14,0-1.03-.5-1.22-.16-.06-2.29,1.18-3.22,1.33-2.64.43-7.79.07-8.78-3.01-.43-1.33-.68-14.61-.36-15.98.07-.29.28-1.07.61-1.07,1.48,0,8.63-.27,9.36,0Z"/>
+                        <path d="M111.72,39.48v4.92c0,.8,2.64.8,2.64,0v-3.84c0-.62,8.84-.37,9.84-.36v3.72c0,5.99-21.07,7.83-22.69-.11-.32-1.57-.33-8.06-.09-9.71,1.08-7.25,19.26-7.26,22.11-1.27.45.95,1.17,5.9.55,6.41-.7.58-10.61.18-12.37.24ZM113.58,32.82c-1.62-1.73-2.65,2.41-1.62,2.94,2.58,1.32,2.39-2.11,1.62-2.94Z"/>
+                        <path d="M160.47,72.4c1.69-1.14,2.86,2.51,1.18,3.22-2.25.94-1.44-3.04-1.18-3.22Z"/>
+                        <path d="M160.59,67.84c1.66-.79,2.45,1.83,1.29,2.49-1.7.97-2.26-2.03-1.29-2.49Z"/>
+                    </svg>
+                </a>
+                <p class="footer__tagline">Місце, де ніч оживає</p>
+            </div>
+            <div class="footer__links">
+                <div class="footer__col">
+                    <h4>Меню</h4>
+                    <a href="#about">Про нас</a>
+                    <a href="#events">Вечірки</a>
+                    <a href="#gallery">Галерея</a>
+                    <a href="#contacts">Контакти</a>
+                </div>
+                <div class="footer__col">
+                    <h4>Контакти</h4>
+                    <a href="tel:0509001292">050 900 12 92</a>
+                    <p>вул. Свободи 18, Шостка</p>
+                </div>
+            </div>
+            <div class="footer__social">
+                <a href="https://www.facebook.com/groups/1255150391204358" target="_blank" class="footer__social-link" aria-label="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2026 ORPHEUM. Усі права захищені.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js?v=8"></script>
 </body>
 </html>
